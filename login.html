@@ -99,6 +99,7 @@
             <!--简历内容 s-->
             <script type="text/javascript" src="js/jquery.validate.unobtrusive.js"></script>
             <script type="text/javascript" src="js/jquery.form.min.js"></script>
+            <script type="text/javascript" src="js/MyJS.js"></script>
             <style type="text/css">
                 .bs_pop_alert {
                     margin-left: 12px
@@ -113,9 +114,7 @@
                                 <ul class="dl_error_wrap">
                                     <li>
                                         <span>　用户</span>
-                                        <input type="text" class="dl_textinp dl_foucs_val dl_dftgrey" name="UserName" id="UserName" placeholder="请输入电子邮箱" data-val-length="您输入的邮箱长度超过60位!"
-                                            data-val-length-max="60" data-val-regex-pattern="^[a-zA-Z0-9][a-zA-Z0-9\.\-_]*@[a-zA-Z0-9\-_]+(\.[a-zA-Z]+){1,3}$"
-                                            data-val-regex="邮箱格式不正确." data-val="true" data-val-required="必填" />
+                                        <input type="text" class="dl_textinp dl_foucs_val dl_dftgrey" name="UserName" id="UserName" data-val="true" data-val-required="必填" />
                                         <span class="field-validation-valid bs_pop_alert" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
                                     </li>
                                     <li>
@@ -127,7 +126,7 @@
                                 </ul>
                                 <span class="tishi" style="display:none">请输入正确的用户名和密码</span>
                                 <div class="dl_padl40 dl_mgtop10">
-                                    <a href="index.html" class="dl_btn_blue1" id="btnLogin">
+                                    <a href="javascript:LoginUser();" class="dl_btn_blue1" id="btnLogin">
                                         <span>登录</span>
                                     </a>
                                 </div>

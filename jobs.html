@@ -114,7 +114,7 @@
                                     <tr class="serchjob">
                                         <td class="listtitle"></td>
                                         <td>
-                                            <input type="text" class="serchinput" maxlength="50" id="k" name="k" />
+                                            <input type="text" class="serchinput" maxlength="50" id="searchInput" name="k" />
                                             <span class="serchbtn">
                                                 <a href="javascript:void(0)" id="searchlink">搜索</a>
                                             </span>
@@ -159,36 +159,24 @@
                         var defaultText = "请输入关键字";
 
                         $(document).ready(function () {
-                            $("input[name='keyword']").click(function () {
+                            $("#searchInput").click(function () {
                                 $(this).val("");
                             });
 
-                            var keyWord = GetParam("k");
+                            var keyWord = GetParam("searchText");
 
                             if (keyWord != null) {
-                                keyWord = decodeURIComponent(keyWord);
-                                keyWord = myHTMLDeCode(keyWord);
 
-                                $("input[name='k']").val(keyWord);
+                                $("#searchInput").val(keyWord);
                             }
 
                             $("#searchlink").click(function () {
-                                var r = GetParam("r");
-                                r = (r == null ? -1 : r);
-                                var p = GetParam("p");
-                                p = (p == null ? "" : p);
-                                var c = GetParam("c");
-                                c = (c == null ? "" : c);
-                                var d = GetParam("d");
-                                d = (d == null ? "" : d);
-                                var k = $("input[name='k']").val();
+                                var k = $("#searchInput").val();
 
                                 if (k == defaultText)
                                     k = "";
-
-                                k = myHTMLEnCode(k);
-                                k = encodeURIComponent($.trim(k));
-                                location.href = "jobs.html" + "?r=" + r + "&p=" + p + "&c=" + c + "&d=" + d + "&k=" + k + '#jlt';
+                                    
+                                location.href = "jobs.html?searchText=" + $("#searchInput").val();
                             });
 
                             var keyStr = $("#k").val();
@@ -197,7 +185,7 @@
                                 $("#k").val(defaultText);
                             }
 
-                            $("#k").focus(function () {
+                            $("#searchInput").focus(function () {
                                 var v = $(this).val();
                                 if (v == defaultText) {
                                     $(this).val("");
@@ -205,7 +193,7 @@
                                 }
                             });
 
-                            $("#k").blur(function () {
+                            $("#searchInput").blur(function () {
                                 var v = $(this).val();
                                 if (!v || v == "") {
                                     $(this).val(defaultText);

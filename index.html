@@ -19,6 +19,36 @@
     <script type="text/javascript" src="js/5_themes_default_demo.js?v=0.0.0.9"></script>
     <!--引用静态文件:requirejs-->
     <script type="text/javascript" src="js/require.js"></script>
+    <script type="text/javascript" src="js/MyJS.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var url = location.search;
+            var Request = new Object();
+
+            if (url.indexOf("?") != -1) {
+                var strs = url.substr(1)　//去掉?号
+                var str = strs.split("&");
+                for (var i = 0; i < str.length; i++) {
+                    Request[str[i].split("=")[0]] = unescape(str[i].split("=")[1]);
+                }
+            }
+
+            if (Request["UserName"]) {
+                $("#fabuzhiwei").show();
+                $("#login").hide();
+                $("#register").hide();
+                $("#showname").show();
+                $("#showname").text(Request["UserName"] + "，欢迎您！");
+            } else {
+                $("#fabuzhiwei").hide();
+                $("#login").show();
+                $("#register").show();
+                $("#showname").hide();
+            }
+
+            getJobList();
+        }
+    </script>
     <title>首页</title>
 </head>
 
@@ -28,34 +58,26 @@
             <div class="bs-module">
                 <div class="login-link ">
                     <div class="login-hearder">
-                        <ul class="header-login" style="display:none">
+                        <ul class="header-login">
                             <li class="welcome">
                                 <span>
-                                    <span class="userName" style="float:none"></span>，欢迎您！</span>
-                            </li>
-                            <li class="PortalIndex">
-                                <a href="member_apply.html">
-                                    <span>个人中心</span>
-                                </a>
-                            </li>
-                            <li class="LogoutUrl">
-                                <a href="/User/Account/LogOut">
-                                    <span>退出</span>
-                                </a>
+                                    &nbsp;&nbsp;
+                                    <span id="showname" class="userName" style="float:none"></span>
+                                </span>
                             </li>
                         </ul>
                         <ul class="header-unLogin">
-                            <li>
+                            <li id="fabuzhiwei">
                                 <a class="loginlink" href="hunting.html">
                                     <span>发布职位</span>
                                 </a>
                             </li>
-                            <li>
+                            <li id="login">
                                 <a class="loginlink" href="login.html">
                                     <span>登录</span>
                                 </a>
                             </li>
-                            <li>
+                            <li id="register">
                                 <a class="reglink" href="reg.html">
                                     <span> 注册</span>
                                 </a>
@@ -124,9 +146,9 @@
                                     <tr class="serchjob">
                                         <td class="listtitle"></td>
                                         <td>
-                                            <input type="text" class="serchinput" maxlength="50" id="k" name="k" />
+                                            <input type="text" class="serchinput" maxlength="50" name="k" id="searchBox" />
                                             <span class="serchbtn">
-                                                <a href="jobs.html" id="searchlink">搜索</a>
+                                                <a href="javascript:searchJobFromHome()" id="searchlink">搜索</a>
                                             </span>
                                         </td>
                                     </tr>
@@ -187,11 +209,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        require([
-            vstr('${st}/${version}/cmsportal/skin/js/baiduStatistics.js')
-        ]);
-    </script>
 </body>
 
 </html>
