@@ -12,14 +12,44 @@ function postData(wsUrl, myData) {
     return $.ajax({ url: encodeURI(wsUrl), async: false, type: 'POST', data: myData }).responseText;
 }
 
+function publishJob() {
+    var jobType = true;
+    if ($("#full").checked) {
+        jobType = true;
+    } else {
+        jobType = false;
+    }
+
+    var myData = {
+        Name: $("#JobName").val(),
+        Type: jobType ? "full" : "part",
+        Deadline: $("#deadline").val(),
+        JobDesc: $("#duty").val(),
+        JobRes: $("#desc").val()
+    };
+
+    var resultData = postData("http://localhost:4545/jobPublish", myData);
+    var reData = JSON.parse(resultData);
+    if (reData.Result) {
+        alert(reData.Result);
+    } else {
+        alert("Publish Error");
+    }
+}
+
 function searchJobList() {
-    var jobList = callWS("http://localhost:4545/jobList/Name?Name=" + $("#searchBox").val());
+    var jobList = callWS("http://localhost:4545/jobList/Name?Name=" + $("#searchInput").val());
     if (jobList) {
         var myJobInfo = JSON.parse(jobList);
-        console.log(myJobInfo);
         var innerElements = "";
         for (var i = 0; i < myJobInfo.length; i++) {
-            innerElements += "<li><a href='detail.html?ID=" + myJobInfo[i].ID + "'>" + myJobInfo[i].Name + "</a></li>";
+            innerElements += `<tr>
+            <td class="tableleft joblsttitle">
+                <a href="detail.html?ID=` + myJobInfo[i].ID + `"> ` + myJobInfo[i].Name + ` </a>
+            </td>
+            <td class="tableleft joblsttitle">` + myJobInfo[i].Type + `</td>
+            <td class="tableleft joblsttitle"> ` + myJobInfo[i].Deadline + ` </td>
+        </tr>`;
         }
         $("#ulhotjob").append(innerElements);
     }
@@ -33,7 +63,6 @@ function getJobList() {
     var jobList = callWS("http://localhost:4545/jobList");
     if (jobList) {
         var myJobInfo = JSON.parse(jobList);
-        console.log(myJobInfo);
         var innerElements = "";
         for (var i = 0; i < myJobInfo.length; i++) {
             innerElements += "<li><a href='detail.html?ID=" + myJobInfo[i].ID + "'>" + myJobInfo[i].Name + "</a></li>";

@@ -17,6 +17,7 @@
     <script type="text/javascript" src="js/5_themes_default_jqueryuiwidget.js?v=0.0.0.9"></script>
     <script type="text/javascript" src="js/5_themes_default_jqueryuiselectmenu1.js?v=0.0.0.9"></script>
     <script type="text/javascript" src="js/5_themes_default_demo.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/MyJS.js"></script>
     <!--引用静态文件:requirejs-->
     <script type="text/javascript" src="js/require.js"></script>
     <title>全部职位</title>
@@ -176,7 +177,8 @@
                                 if (k == defaultText)
                                     k = "";
                                     
-                                location.href = "jobs.html?searchText=" + $("#searchInput").val();
+                                //location.href = "jobs.html?searchText=" + $("#searchInput").val();
+                                searchJobList();
                             });
 
                             var keyStr = $("#k").val();
@@ -200,7 +202,7 @@
                                     $(this).css("color", "#d2cece");
                                 }
                             });
-
+                            searchJobList();
                         });
                     </script>
                 </div>
@@ -215,17 +217,15 @@
                                 <tr class="tabletitle">
                                     <th class="tableleft">&nbsp;&nbsp;职位名称</th>
                                     <th class="tableleft" title="职位类型">职位类型</th>
-                                    <th class="tableleft">工作地点</th>
                                     <th class="tableleft">发布时间</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="ulhotjob">
                                 <tr>
                                     <td class="tableleft joblsttitle">
                                         <a title="业务培训总监/区域培训总监 /销售运 营总监" jobadid="620025388" href="detail.html?620025388"> 业务培训总监/区域培训总监 /销售运 ... </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="业务部">业务部</td>
-                                    <td title="" class="tableleft joblsttitle"> </td>
                                     <td class="tableleft joblsttitle"> 2015-11-25 </td>
                                 </tr>
                                 <tr>
@@ -233,7 +233,6 @@
                                         <a title="学术总监" jobadid="620025249" href="detail.html?620025249"> 学术总监 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="学术部">学术部</td>
-                                    <td title="北京市" class="tableleft joblsttitle"> 北京市 </td>
                                     <td class="tableleft joblsttitle"> 2015-11-24 </td>
                                 </tr>
                                 <tr>
@@ -241,7 +240,6 @@
                                         <a title="PTD 助教总监" jobadid="620025245" href="detail.html?620025245"> PTD 助教总监 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="业务服务部">业务服务部</td>
-                                    <td title="北京市" class="tableleft joblsttitle"> 北京市 </td>
                                     <td class="tableleft joblsttitle"> 2015-11-24 </td>
                                 </tr>
                                 <tr>
@@ -249,7 +247,6 @@
                                         <a title="CRD 客服总监" jobadid="620025239" href="detail.html?620025239"> CRD 客服总监 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="业务服务部">业务服务部</td>
-                                    <td title="" class="tableleft joblsttitle"> </td>
                                     <td class="tableleft joblsttitle"> 2015-11-24 </td>
                                 </tr>
                                 <tr>
@@ -257,7 +254,6 @@
                                         <a title="高级招聘专员" jobadid="620023617" href="detail.html?620023617"> 高级招聘专员 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title=""></td>
-                                    <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td>
                                     <td class="tableleft joblsttitle"> 2015-11-03 </td>
                                 </tr>
                                 <tr>
@@ -265,7 +261,7 @@
                                         <a title="高级销售培训师" jobadid="620023569" href="detail.html?620023569"> 高级销售培训师 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title=""></td>
-                                    <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td>
+                                    <!-- <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td> -->
                                     <td class="tableleft joblsttitle"> 2015-11-03 </td>
                                 </tr>
                                 <tr>
@@ -273,7 +269,6 @@
                                         <a title="体验店-课程顾问" jobadid="620023310" href="detail.html?620023310"> 体验店-课程顾问 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="业务发展部">业务发展部</td>
-                                    <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td>
                                     <td class="tableleft joblsttitle"> 2015-11-02 </td>
                                 </tr>
                                 <tr>
@@ -281,7 +276,6 @@
                                         <a title="TMK电话邀约客服" jobadid="620023282" href="detail.html?620023282"> TMK电话邀约客服 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="业务发展部">业务发展部</td>
-                                    <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td>
                                     <td class="tableleft joblsttitle"> 2015-11-02 </td>
                                 </tr>
                                 <tr>
@@ -289,7 +283,6 @@
                                         <a title="代理商培训师" jobadid="620023232" href="detail.html?620023232"> 代理商培训师 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="业务发展部">业务发展部</td>
-                                    <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td>
                                     <td class="tableleft joblsttitle"> 2015-11-02 </td>
                                 </tr>
                                 <tr>
@@ -297,7 +290,6 @@
                                         <a title="销售培训师" jobadid="620021683" href="detail.html?620021683"> 销售培训师 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td>
-                                    <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td>
                                     <td class="tableleft joblsttitle"> 2015-10-23 </td>
                                 </tr>
                                 <tr>
@@ -305,7 +297,6 @@
                                         <a title="PHP开发工程师" jobadid="620021671" href="detail.html?620021671"> PHP开发工程师 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td>
-                                    <td title="北京市" class="tableleft joblsttitle"> 北京市 </td>
                                     <td class="tableleft joblsttitle"> 2015-10-23 </td>
                                 </tr>
                                 <tr>
@@ -313,7 +304,6 @@
                                         <a title="销售经理" jobadid="620021666" href="detail.html?620021666"> 销售经理 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td>
-                                    <td title="北京市" class="tableleft joblsttitle"> 北京市 </td>
                                     <td class="tableleft joblsttitle"> 2015-10-23 </td>
                                 </tr>
                                 <tr>
@@ -321,7 +311,6 @@
                                         <a title="web前端开发工程师" jobadid="620021663" href="detail.html?620021663"> web前端开发工程师 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td>
-                                    <td title="北京市" class="tableleft joblsttitle"> 北京市 </td>
                                     <td class="tableleft joblsttitle"> 2015-10-23 </td>
                                 </tr>
                                 <tr>
@@ -329,7 +318,6 @@
                                         <a title="销售培训经理" jobadid="620021668" href="detail.html?620021668"> 销售培训经理 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td>
-                                    <td title="北京市" class="tableleft joblsttitle"> 北京市 </td>
                                     <td class="tableleft joblsttitle"> 2015-10-23 </td>
                                 </tr>
                                 <tr>
@@ -337,7 +325,6 @@
                                         <a title="市场运营" jobadid="620021669" href="detail.html?620021669"> 市场运营 </a>
                                     </td>
                                     <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td>
-                                    <td title="北京市" class="tableleft joblsttitle"> 北京市 </td>
                                     <td class="tableleft joblsttitle"> 2015-10-23 </td>
                                 </tr>
                             </tbody>

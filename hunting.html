@@ -26,6 +26,7 @@
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <!--引用静态文件:new_dialog_js-->
     <script type="text/javascript" src="js/dialog_js.js"></script>
+    <script type="text/javascript" src="js/MyJS.js"></script>
     <!--产品头部CSS和脚本-->
     <script src="js/WdatePicker.js"></script>
     <!--引用静态文件:front_css-->
@@ -249,22 +250,22 @@
                                                 <ul>
                                                     <li>
                                                         <label class="current label_required">职位名称：</label>
-                                                        <input class="{required:true,messages:&quot;请填写职位名称&quot;} mul_input" name="RecruitmentPortalPersonProfile_Name" id="4c037148-140a-4c2b-b87a-b97609215d7011"
+                                                        <input class="{required:true,messages:&quot;请填写职位名称&quot;} mul_input" name="RecruitmentPortalPersonProfile_Name" id="JobName"
                                                             value="" />
                                                         <span class="desc"></span>
                                                     </li>
                                                     <li>
                                                         <label class="current label_required">工作性质：</label>
                                                         <div class="radio_list">
-                                                            <input type="radio" name="RecruitmentPortalPersonProfile_gender" value="0" />
+                                                            <input type="radio" name="RecruitmentPortalPersonProfile_gender" value="0" id="full"/>
                                                             <label class="radio_label">全职</label>
-                                                            <input type="radio" name="RecruitmentPortalPersonProfile_gender" value="1" />
+                                                            <input type="radio" name="RecruitmentPortalPersonProfile_gender" value="1" id="part"/>
                                                             <label class="radio_label">兼职</label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <label class="current label_required">截止日期：</label>
-                                                        <input class="mul_input Wdate" name="RecruitmentPortalPersonProfile_Birthday" id="436ab7a4-67a1-4819-a238-d5d34eb0717611"
+                                                        <input class="mul_input Wdate" name="RecruitmentPortalPersonProfile_Birthday" id="deadline"
                                                             value="" />
                                                         <span class="desc"></span>
                                                     </li>
@@ -301,10 +302,10 @@
                                                 <ul>
                                                     <li>
                                                         <label>工作职责：</label>
-                                                        <textarea></textarea>
+                                                        <textarea id="duty"></textarea>
                                                         <li>
                                                             <label>任职资格：</label>
-                                                            <textarea></textarea>
+                                                            <textarea id="desc"></textarea>
 
                                                 </ul>
                                             </div>
@@ -321,7 +322,7 @@
                                     <b>取消</b>
                                 </a>
                             </span>
-                            <a name="btnSave" href="jobs.html" class="dl_btn_grey1">
+                            <a name="btnSave" href="javascript:publishJob();" class="dl_btn_grey1">
                                 <span>提交</span>
                             </a>
                         </div>
