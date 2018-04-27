@@ -12,9 +12,22 @@ function postData(wsUrl, myData) {
     return $.ajax({ url: encodeURI(wsUrl), async: false, type: 'POST', data: myData }).responseText;
 }
 
+function GetParam(key) {
+    return (document.location.search.match(new RegExp("(?:^\\?|&)" + key + "=(.*?)(?=&|$)")) || ['', null])[1];
+}
+
+function GetHuntingJob() {
+    var myData = JSON.parse(callWS("http://localhost:4545/jobList/ID?ID=" + GetParam("ID")));
+    $("#JobName").text(myData[0].Name);
+    $("#JobType").text(myData[0].Type);
+    $("#JobDeadline").text(myData[0].Deadline);
+    $("#JobRep").text(myData[0].JobRes);
+    $("#JobDesc").text(myData[0].JobDesc);
+}
+
 function publishJob() {
     var jobType = true;
-    if ($("#full").checked) {
+    if ($("input[name=RecruitmentPortalPersonProfile_gender]:checked").val() == 0) {
         jobType = true;
     } else {
         jobType = false;
@@ -32,6 +45,7 @@ function publishJob() {
     var reData = JSON.parse(resultData);
     if (reData.Result) {
         alert(reData.Result);
+        window.location.href = "jobs.html";
     } else {
         alert("Publish Error");
     }
