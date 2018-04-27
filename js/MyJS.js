@@ -35,7 +35,7 @@ function publishJob() {
 
     var myData = {
         Name: $("#JobName").val(),
-        Type: jobType ? "full" : "part",
+        Type: jobType ? "全职" : "兼职",
         Deadline: $("#deadline").val(),
         JobDesc: $("#duty").val(),
         JobRes: $("#desc").val()

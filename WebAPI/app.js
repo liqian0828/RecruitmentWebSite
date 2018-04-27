@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var usersRouter = require('./routes/users');
 var huntingRouter = require('./routes/hunting');
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.listen(4545);
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cors());
 
 app.use('/', usersRouter);
 app.use('/huntingJob', huntingRouter);

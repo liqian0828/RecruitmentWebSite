@@ -1,9 +1,9 @@
 var sqlite3 = require('sqlite3').verbose();
 
-exports.getUserData = function (callback, ID) {
+exports.getUserData = function (callback, ID, PW) {
     var db = new sqlite3.Database('DBFile/JobHunting.db');
-    db.all('select * from T_User where UserName = ?', [ID], function (err, rows) {
-        callback(rows)
+    db.all('select * from T_User where UserName = ? and Password = ?', [ID, PW], function (err, rows) {
+        callback(JSON.stringify(rows));
     });
     db.close();
 }

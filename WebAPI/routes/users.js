@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/ID', function (req, res, next) {
   var params = url.parse(req.url, true).query;
-  getData.getUserData(ResponseBody, params.ID);
+  getData.getUserData(ResponseBody, params.ID, params.PW);
   getRes = res;
 });
 
