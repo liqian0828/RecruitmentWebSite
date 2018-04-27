@@ -16,6 +16,36 @@ function GetParam(key) {
     return (document.location.search.match(new RegExp("(?:^\\?|&)" + key + "=(.*?)(?=&|$)")) || ['', null])[1];
 }
 
+function HuntingJob() {
+    var jobType = true;
+    if ($("input[name=RecruitmentPortalPersonProfile_gender]:checked").val() == 0) {
+        jobType = true;
+    } else {
+        jobType = false;
+    }
+
+    var myData = {
+        Name: $("#name").val(),
+        Sex: jobType ? "男" : "女",
+        Birthday: $("#Birthday").val(),
+        Mail: $("#mail").val(),
+        Tele: $("#tele").val(),
+        WEY: $("#YearsOfWork").val(),
+        Salary: $("#CurrSalary").val(),
+        OBDate: $("#EntrantDate").val()
+    };
+
+    var resultData = postData("http://localhost:4545/huntingJob", myData);
+    var reData = JSON.parse(resultData);
+    if (reData.Result) {
+        alert(reData.Result);
+        alert("Send Succeed");
+        window.location.href = "jobs.html";
+    } else {
+        alert("Send Failed");
+    }
+}
+
 function GetHuntingJob() {
     var myData = JSON.parse(callWS("http://localhost:4545/jobList/ID?ID=" + GetParam("ID")));
     $("#JobName").text(myData[0].Name);

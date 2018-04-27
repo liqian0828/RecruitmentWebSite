@@ -27,6 +27,7 @@
     <script type="text/javascript" src="js/dialog_js.js"></script>
     <!--产品头部CSS和脚本-->
     <script src="js/WdatePicker.js"></script>
+    <script src="js/MyJS.js"></script>
     <!--引用静态文件:front_css-->
     <link href="css/front.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
@@ -256,8 +257,7 @@
                                                 <ul>
                                                     <li>
                                                         <label class="current label_required">姓名：</label>
-                                                        <input class="{required:true,messages:&quot;请填写姓名&quot;} mul_input"
-                                                            name="RecruitmentPortalPersonProfile_Name" id="4c037148-140a-4c2b-b87a-b97609215d7011"
+                                                        <input class="{required:true,messages:&quot;请填写姓名&quot;} mul_input" name="RecruitmentPortalPersonProfile_Name" id="name"
                                                             value="" />
                                                         <span class="desc"></span>
                                                     </li>
@@ -272,22 +272,19 @@
                                                     </li>
                                                     <li>
                                                         <label class="current label_required">出生日期：</label>
-                                                        <input class="mul_input Wdate" name="RecruitmentPortalPersonProfile_Birthday"
-                                                            id="436ab7a4-67a1-4819-a238-d5d34eb0717611" value="" />
+                                                        <input class="mul_input Wdate" name="RecruitmentPortalPersonProfile_Birthday" id="Birthday" value="" />
                                                         <span class="desc"></span>
                                                     </li>
                                                     <li>
                                                         <label class="current label_required">邮箱：</label>
-                                                        <input class="{required:true,messages:&quot;请填写邮箱&quot;} mul_input"
-                                                            name="RecruitmentPortalPersonProfile_email" id="67a5c587-4f90-4ae7-819f-eb3dba9ea39911"
+                                                        <input class="{required:true,messages:&quot;请填写邮箱&quot;} mul_input" name="RecruitmentPortalPersonProfile_email" id="mail"
                                                             value="" />
                                                         <span class="desc"></span>
                                                     </li>
                                                     <li>
                                                         <label class="current label_required">手机号：</label>
-                                                        <input class="{required:true,messages:'请填写手机号'} mul_input "
-                                                            name="RecruitmentPortalPersonProfile_Mobile" id="acb9b67f-9643-41fb-a7fe-5ff8d742ccdf11"
-                                                            value="" /> </li>
+                                                        <input class="{required:true,messages:'请填写手机号'} mul_input " name="RecruitmentPortalPersonProfile_Mobile" id="tele" value=""
+                                                        /> </li>
                                                 </ul>
                                             </div>
                                             <div class="clear"></div>
@@ -297,11 +294,8 @@
                                                 <ul>
                                                     <li>
                                                         <label class="current label_required">工作年限：</label>
-                                                        <select name="RecruitmentPortalPersonProfile_YearsOfWork"
-                                                            id="RecruitmentPortalPersonProfile_YearsOfWork" class="mul_select">
-                                                            <option value="">请选择</option>
-                                                            <option value="99">在读学生</option>
-                                                            <option value="98">应届毕业生</option>
+                                                        <select name="RecruitmentPortalPersonProfile_YearsOfWork" id="YearsOfWork" class="mul_select">
+                                                            <option value="0">0年</option>
                                                             <option value="1">1年</option>
                                                             <option value="2">2年</option>
                                                             <option value="3">3年</option>
@@ -346,86 +340,22 @@
                                             <div class="form_part_container columnone">
                                                 <ul>
                                                     <li>
-                                                        <label>现从事行业：</label>
-                                                        <input class="mul_input industry" name="RecruitmentPortalObjective_EngagedIndustry_txt"
-                                                            id="ef3f9faf-97c6-432b-9c6b-0b0b66c5c4271212_txt" value="" />
-                                                        <input type="hidden" value="" id="ef3f9faf-97c6-432b-9c6b-0b0b66c5c4271212"
-                                                            name="RecruitmentPortalObjective_EngagedIndustry" /> </li>
-                                                    <li>
-                                                        <label>现从事职业：</label>
-                                                        <input type="text" readonly="true" displayname="现从事职业"
-                                                            constname="JobCategory" value="" class="Ajson ConstDictSingleSelect"
-                                                            id="RecruitmentPortalObjective_CurrJobCategory_Id" />
-                                                        <input type="hidden" value="" name="RecruitmentPortalObjective_CurrJobCategory"
-                                                            id="RecruitmentPortalObjective_CurrJobCategory" class="ResidenceState"
-                                                        /> </li>
-                                                    <li>
-                                                        <label>现工作城市：</label>
-                                                        <input type="text" readonly="true" displayname="现工作城市"
-                                                            constname="Areas" value="" class="Ajson ConstDictSingleSelect" id="RecruitmentPortalObjective_CurrWorkCity_Id"
-                                                        />
-                                                        <input type="hidden" value="" name="RecruitmentPortalObjective_CurrWorkCity"
-                                                            id="RecruitmentPortalObjective_CurrWorkCity" class="ResidenceState"
-                                                        /> </li>
-                                                    <li>
                                                         <label>现月薪(税前)：</label>
-                                                        <select name="RecruitmentPortalObjective_CurrSalary"
-                                                            id="RecruitmentPortalObjective_CurrSalary" class="mul_select">
-                                                            <option value="">请选择</option>
-                                                            <option value="1">1000以下</option>
-                                                            <option value="2">1000～2000</option>
-                                                            <option value="3">2001～4000</option>
-                                                            <option value="4">4001～6000</option>
-                                                            <option value="5">6001～8000</option>
-                                                            <option value="6">8001～10000</option>
-                                                            <option value="7">10001～15000</option>
-                                                            <option value="8">15001～25000</option>
-                                                            <option value="9">25000以上</option>
-                                                            <option value="10">面议</option>
-                                                        </select>
-                                                    </li>
-                                                    <li>
-                                                        <label class="current label_required">期望从事行业：</label>
-                                                        <input class="mul_input industry" name="RecruitmentPortalObjective_ExpectIndustry_txt"
-                                                            id="e5688d4a-bad3-48fb-842e-0ae7df7036d51212_txt" value="" />
-                                                        <input type="hidden" id="e5688d4a-bad3-48fb-842e-0ae7df7036d51212"
-                                                            name="RecruitmentPortalObjective_ExpectIndustry" class="{required:true,messages:&quot;请填写期望从事行业&quot;}"
-                                                        /> </li>
-                                                    <li>
-                                                        <label class="current">期望从事职业：</label>
-                                                        <input type="text" readonly="true" displayname="期望从事职业"
-                                                            constname="JobCategory" value="" class="Ajson ConstDictSingleSelect"
-                                                            id="RecruitmentPortalObjective_ExpectJobCategory_Id" />
-                                                        <input class="ResidenceState" type="hidden" value="" name="RecruitmentPortalObjective_ExpectJobCategory"
-                                                            id="RecruitmentPortalObjective_ExpectJobCategory" /> </li>
-                                                    <li>
-                                                        <label class="current label_required">期望工作城市：</label>
-                                                        <input name="RecruitmentPortalObjective_ExpectWorkCity_txt"
-                                                            id="bdb0be18-1b30-4001-817e-34807ab4d94b1212_txt" value="" />
-                                                        <input type="hidden" value="" id="bdb0be18-1b30-4001-817e-34807ab4d94b1212"
-                                                            name="RecruitmentPortalObjective_ExpectWorkCity" class="{required:true,messages:&quot;请填写期望工作城市&quot;}"
-                                                        /> </li>
-                                                    <li>
-                                                        <label>期望月薪(税前)：</label>
-                                                        <select name="RecruitmentPortalObjective_ExpectSalary"
-                                                            id="RecruitmentPortalObjective_ExpectSalary" class="mul_select">
-                                                            <option value="">请选择</option>
-                                                            <option value="1">1000以下</option>
-                                                            <option value="2">1000～2000</option>
-                                                            <option value="3">2001～4000</option>
-                                                            <option value="4">4001～6000</option>
-                                                            <option value="5">6001～8000</option>
-                                                            <option value="6">8001～10000</option>
-                                                            <option value="7">10001～15000</option>
-                                                            <option value="8">15001～25000</option>
-                                                            <option value="9">25000以上</option>
-                                                            <option value="10">面议</option>
+                                                        <select name="RecruitmentPortalObjective_CurrSalary" id="CurrSalary" class="mul_select">
+                                                            <option value="1000">1000以下</option>
+                                                            <option value="2000">1000～2000</option>
+                                                            <option value="3000">2001～4000</option>
+                                                            <option value="5000">4001～6000</option>
+                                                            <option value="7000">6001～8000</option>
+                                                            <option value="9000">8001～10000</option>
+                                                            <option value="10000">10001～15000</option>
+                                                            <option value="15000">15001～25000</option>
+                                                            <option value="25000">25000以上</option>
                                                         </select>
                                                     </li>
                                                     <li>
                                                         <label>到岗时间：</label>
-                                                        <select name="RecruitmentPortalObjective_EntrantDate"
-                                                            id="RecruitmentPortalObjective_EntrantDate" class="mul_select">
+                                                        <select name="RecruitmentPortalObjective_EntrantDate" id="EntrantDate" class="mul_select">
                                                             <option value="">请选择</option>
                                                             <option value="1">一周内</option>
                                                             <option value="2">一个月内</option>
@@ -449,7 +379,7 @@
                                     <b>取消</b>
                                 </a>
                             </span>
-                            <a name="btnSave" href="jobs.html" class="dl_btn_grey1">
+                            <a name="btnSave" href="javascript:HuntingJob();" class="dl_btn_grey1">
                                 <span>提交</span>
                             </a>
                         </div>
