@@ -25,7 +25,7 @@ function addParam(url) {
 }
 
 function huntingNav() {
-    var url = "apply_info.html?JobName=" + $("#JobName").val();
+    var url = "apply_info.html?JobName=" + $("#JobName").text();
     $("#apply").attr("href", url + '&UserName=' + GetParam('UserName'));
 }
 
@@ -106,7 +106,7 @@ function searchJobList() {
         for (var i = 0; i < myJobInfo.length; i++) {
             innerElements += `<tr>
             <td class="tableleft joblsttitle">
-                <a href="detail.html?ID=` + myJobInfo[i].ID + `"> ` + myJobInfo[i].Name + ` </a>
+                <a href="detail.html?ID=` + myJobInfo[i].ID + `&UserName=` + GetParam('UserName') + `"> ` + myJobInfo[i].Name + ` </a>
             </td>
             <td class="tableleft joblsttitle">` + myJobInfo[i].Type + `</td>
             <td class="tableleft joblsttitle"> ` + myJobInfo[i].Deadline + ` </td>
@@ -127,7 +127,7 @@ function getJobList() {
         var innerElements = "";
         $("#ulhotjob").text("");
         for (var i = 0; i < myJobInfo.length; i++) {
-            innerElements += "<li><a href='detail.html?ID=" + myJobInfo[i].ID + "'>" + myJobInfo[i].Name + "</a></li>";
+            innerElements += "<li><a href='detail.html?ID=" + myJobInfo[i].ID + "&UserName=" + GetParam('UserName') + "'>" + myJobInfo[i].Name + "</a></li>";
         }
         $("#ulhotjob").append(innerElements);
     }

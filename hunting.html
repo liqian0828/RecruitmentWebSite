@@ -28,6 +28,13 @@
     <script type="text/javascript" src="js/MyJS.js"></script>
     <!--引用静态文件:front_css-->
     <link href="css/front.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if(GetParam('UserName') == "null"){
+                window.location.href = "login.html";
+            }
+        });
+   </script>
     <style type="text/css">
         .checkbox_list {
             float: left;
