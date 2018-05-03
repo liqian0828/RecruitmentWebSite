@@ -16,6 +16,19 @@ function GetParam(key) {
     return (document.location.search.match(new RegExp("(?:^\\?|&)" + key + "=(.*?)(?=&|$)")) || ['', null])[1];
 }
 
+function addParamother(url) {
+    window.location.href = url + '?UserName=' + GetParam('UserName');
+}
+
+function addParam(url) {
+    window.location.href = url + '&UserName=' + GetParam('UserName');
+}
+
+function huntingNav() {
+    var url = "apply_info.html?JobName=" + $("#JobName").val();
+    $("#apply").attr("href", url + '&UserName=' + GetParam('UserName'));
+}
+
 function HuntingJob() {
     var jobType = true;
     if ($("input[name=RecruitmentPortalPersonProfile_gender]:checked").val() == 0) {
@@ -38,11 +51,10 @@ function HuntingJob() {
     var resultData = postData("http://localhost:4545/huntingJob", myData);
     var reData = JSON.parse(resultData);
     if (reData.Result) {
-        alert(reData.Result);
-        alert("Send Succeed");
-        window.location.href = "jobs.html";
+        alert("发送成功");
+        addParamother("jobs.html");
     } else {
-        alert("Send Failed");
+        alert("发送失败");
     }
 }
 
@@ -51,8 +63,8 @@ function GetHuntingJob() {
     $("#JobName").text(myData[0].Name);
     $("#JobType").text(myData[0].Type);
     $("#JobDeadline").text(myData[0].Deadline);
-    $("#JobRep").text(myData[0].JobRes);
-    $("#JobDesc").text(myData[0].JobDesc);
+    $("#JobRep").html(myData[0].JobRes);
+    $("#JobDesc").html(myData[0].JobDesc);
 }
 
 function publishJob() {
@@ -74,18 +86,23 @@ function publishJob() {
     var resultData = postData("http://localhost:4545/jobPublish", myData);
     var reData = JSON.parse(resultData);
     if (reData.Result) {
-        alert(reData.Result);
-        window.location.href = "jobs.html";
+        alert("发布成功");
+        addParamother("jobs.html");
     } else {
-        alert("Publish Error");
+        alert("发布失败");
     }
 }
 
 function searchJobList() {
-    var jobList = callWS("http://localhost:4545/jobList/Name?Name=" + $("#searchInput").val());
+    var seatext = $("#searchInput").val();
+    if (seatext == "请输入关键字")
+        seatext = "";
+
+    var jobList = callWS("http://localhost:4545/jobList/Name?Name=" + seatext);
     if (jobList) {
         var myJobInfo = JSON.parse(jobList);
         var innerElements = "";
+        $("#ulhotjob").text("");
         for (var i = 0; i < myJobInfo.length; i++) {
             innerElements += `<tr>
             <td class="tableleft joblsttitle">
@@ -100,7 +117,7 @@ function searchJobList() {
 }
 
 function searchJobFromHome() {
-    window.location.href = "jobs.html?searchText=" + $("#searchBox").val();
+    addParam("jobs.html?searchText=" + $("#searchBox").val());
 }
 
 function getJobList() {
@@ -108,6 +125,7 @@ function getJobList() {
     if (jobList) {
         var myJobInfo = JSON.parse(jobList);
         var innerElements = "";
+        $("#ulhotjob").text("");
         for (var i = 0; i < myJobInfo.length; i++) {
             innerElements += "<li><a href='detail.html?ID=" + myJobInfo[i].ID + "'>" + myJobInfo[i].Name + "</a></li>";
         }

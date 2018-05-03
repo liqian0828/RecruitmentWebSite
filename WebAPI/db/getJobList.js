@@ -18,6 +18,8 @@ exports.getJobDataByID = function (callback, ID) {
 
 exports.getJobDataByName = function (callback, Name) {
     var db = new sqlite3.Database('DBFile/JobHunting.db');
+    if (!Name)
+        Name = "";
     db.all("select * from T_Job where Name like ?", ['%' + Name + '%'], function (err, rows) {
         callback(rows)
     });
