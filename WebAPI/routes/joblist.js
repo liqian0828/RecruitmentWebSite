@@ -24,6 +24,24 @@ router.get('/Name', function (req, res, next) {
     getRes = res;
 });
 
+router.get('/myHuntingJob', function (req, res, next) {
+    var params = url.parse(req.url, true).query;
+    getData.getmyhuntingJob(ResponseBody, params.Name);
+    getRes = res;
+});
+
+router.get('/myPubJob', function (req, res, next) {
+    var params = url.parse(req.url, true).query;
+    getData.getmyPubJob(ResponseBody, params.Name);
+    getRes = res;
+});
+
+router.get('/huntingID', function (req, res, next) {
+    var params = url.parse(req.url, true).query;
+    getData.getmyhuntingName(ResponseBody, params.ID);
+    getRes = res;
+});
+
 function ResponseBody(resBody){
     getRes.send(resBody);
 }

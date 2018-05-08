@@ -26,7 +26,45 @@ function addParam(url) {
 
 function huntingNav() {
     var url = "apply_info.html?JobName=" + $("#JobName").text();
-    $("#apply").attr("href", url + '&UserName=' + GetParam('UserName'));
+    $("#apply").attr("href", url + '&UserName=' + GetParam('UserName') + "&ID=" + GetParam("ID"));
+}
+
+function GetHuntingName() {
+    var myDatas = JSON.parse(callWS("http://localhost:4545/jobList/huntingID?ID=" + GetParam("ID")));
+    if (myDatas) {
+        var innerElements = "";
+        $("#namelist").text("");
+        for (var i = 0; i < myDatas.length; i++) {
+            innerElements += "<li class='nvalue'>" + myDatas[i].Name + " " + myDatas[i].Tele +"</li>";
+        }
+        $("#namelist").append(innerElements);
+    }
+}
+
+function getpubJobList() {
+    var jobList = callWS("http://localhost:4545/jobList/myPubJob?Name=" + GetParam('UserName'));
+    if (jobList) {
+        var myJobInfo = JSON.parse(jobList);
+        var innerElements = "";
+        $("#pubjob").text("");
+        for (var i = 0; i < myJobInfo.length; i++) {
+            innerElements += "<li><a href='mydetail.html?ID=" + myJobInfo[i].ID + "&UserName=" + GetParam('UserName') + "'>" + myJobInfo[i].Name + "</a></li>";
+        }
+        $("#pubjob").append(innerElements);
+    }
+}
+
+function gethuntingJobList() {
+    var jobList = callWS("http://localhost:4545/jobList/myHuntingJob?Name=" + GetParam('UserName'));
+    if (jobList) {
+        var myJobInfo = JSON.parse(jobList);
+        var innerElements = "";
+        $("#huntingjob").text("");
+        for (var i = 0; i < myJobInfo.length; i++) {
+            innerElements += "<li><a href='mydetail.html?ID=" + myJobInfo[i].ID + "&UserName=" + GetParam('UserName') + "'>" + myJobInfo[i].Name + "</a></li>";
+        }
+        $("#huntingjob").append(innerElements);
+    }
 }
 
 function HuntingJob() {
@@ -45,7 +83,9 @@ function HuntingJob() {
         Tele: $("#tele").val(),
         WEY: $("#YearsOfWork").val(),
         Salary: $("#CurrSalary").val(),
-        OBDate: $("#EntrantDate").val()
+        OBDate: $("#EntrantDate").val(),
+        JobID: GetParam("ID"),
+        UserName: GetParam("UserName")
     };
 
     var resultData = postData("http://localhost:4545/huntingJob", myData);
@@ -80,7 +120,8 @@ function publishJob() {
         Type: jobType ? "全职" : "兼职",
         Deadline: $("#deadline").val(),
         JobDesc: $("#duty").val(),
-        JobRes: $("#desc").val()
+        JobRes: $("#desc").val(),
+        UserName: GetParam("UserName")
     };
 
     var resultData = postData("http://localhost:4545/jobPublish", myData);
@@ -147,8 +188,7 @@ function regUser() {
     var myData = {
         UserName: $("#UserName").val(),
         Password: $("#Password").val(),
-        Role: "admin",
-        RID: "0"
+        Role: "admin"
     };
     var userInfo = postData("http://localhost:4545/reg", myData);
     if (userInfo) {

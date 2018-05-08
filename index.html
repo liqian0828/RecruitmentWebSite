@@ -35,12 +35,14 @@
 
             if (Request["UserName"]) {
                 $("#fabuzhiwei").show();
+                $("#fabuzhiwei2").show();
                 $("#login").hide();
                 $("#register").hide();
                 $("#showname").show();
                 $("#showname").text(Request["UserName"] + "，欢迎您！");
             } else {
                 $("#fabuzhiwei").hide();
+                $("#fabuzhiwei2").hide();
                 $("#login").show();
                 $("#register").show();
                 $("#showname").hide();
@@ -70,6 +72,11 @@
                             <li id="fabuzhiwei">
                                 <a class="loginlink" href="javascript:addParamother('hunting.html')">
                                     <span>发布职位</span>
+                                </a>
+                            </li>
+                            <li id="fabuzhiwei2">
+                                <a class="loginlink" href="javascript:addParamother('myInfo.html')">
+                                    <span>个人中心</span>
                                 </a>
                             </li>
                             <li id="login">

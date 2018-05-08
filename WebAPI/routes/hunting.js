@@ -7,7 +7,7 @@ var getRes;
 
 router.post('/', function (req, res, next) {
     var body = req.body;
-    getData.huntingJob(ResponseBody, body, '1', '2');
+    getData.huntingJob(ResponseBody, body);
     getRes = res;
 });
 

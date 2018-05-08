@@ -13,7 +13,7 @@ exports.regData = function (callback, body) {
     const uuidv1 = require('uuid/v1');
     db.all('select * from T_User where UserName = ?', [body.UserName], function (err, rows) {
         if (!rows || rows.length == 0) {
-            db.run('Insert into T_User (ID, UserName, Password, Role, RID) values (?, ?, ?, ?, ?)', [uuidv1(), body.UserName, body.Password, body.Role, body.RID], function (err, res) {
+            db.run('Insert into T_User (ID, UserName, Password, Role) values (?, ?, ?, ?)', [uuidv1(), body.UserName, body.Password, body.Role], function (err, res) {
                 if (!err)
                     callback(JSON.stringify({ Result: "Ok" }));
                 else

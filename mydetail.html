@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link type="text/css" rel="stylesheet" href="css/frontmodule.css" />
+    <link type="text/css" rel="stylesheet" href="css/5_themes_default_style.css?v=0.0.0.9" front="css" />
+    <link type="text/css" rel="stylesheet" href="css/5_themes_default_flexslider.css?v=0.0.0.9" front="css" />
+    <link type="text/css" rel="stylesheet" href="css/5_themes_default_jqueryuicore.css?v=0.0.0.9" front="css" />
+    <link type="text/css" rel="stylesheet" href="css/5_themes_default_jqueryuiselectmenu.css?v=0.0.0.9" front="css" />
+    <link type="text/css" rel="stylesheet" href="css/5_themes_default_jqueryuitheme.css?v=0.0.0.9" front="css" />
+    <script type="text/javascript" src="js/5_themes_default_jquery191.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_dialog.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_jqueryflexslidermin.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_jqueryuicore1.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_jqueryuiposition.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_jqueryuiwidget.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_jqueryuiselectmenu1.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_demo.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/MyJS.js"></script>
+    <!--引用静态文件:requirejs-->
+    <script type="text/javascript" src="js/require.js"></script>
+    <script type="text/javascript">
+         $(document).ready(function () {
+            GetHuntingJob();
+            huntingNav();
+            GetHuntingName();
+         });
+    </script>
+    <title>招聘详细</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="headercontain">
+            <div class="logo">
+                <div class="logo">
+                    <!-- <img src="images/104003_medias_20141215_20141215logo.jpg?v=635542641034400000" /> -->
+                </div>
+            </div>
+            <!--module:login begin-->
+            <div class="bs-module">
+                <div class="login-link ">
+                    <div class="login-hearder">
+                        <ul class="header-login" style="display:none">
+                            <li class="welcome">
+                                <span>
+                                    <span class="userName" style="float:none"></span>，欢迎您！</span>
+                            </li>
+                            <li class="PortalIndex">
+                                <a href="member_apply.html">
+                                    <span>个人中心</span>
+                                </a>
+                            </li>
+                            <li class="LogoutUrl">
+                                <a href="/User/Account/LogOut">
+                                    <span>退出</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="header-unLogin" style="display:none">
+                            <li>
+                                <a class="loginlink" href="/Portal/Account/Login?returnUrl=%2Fzpdetail%2F620025388">
+                                    <span>登录</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="reglink" href="/Portal/Account/Register?returnUrl=%2Fzpdetail%2F620025388">
+                                    <span> 注册</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--module:login end-->
+            <!--module:internalrecommend begin-->
+            <div class="bs-module">
+                <div class="internalrecommend-default ">
+                    <div class="internaldiv">
+                        <!-- <a class="internal" href="http://neitui.zhiye.com/51talk" target="_blank">内部推荐专区</a> -->
+                    </div>
+                </div>
+            </div>
+            <!--module:internalrecommend end-->
+        </div>
+    </div>
+    <div class="contain zpcontain clearfix">
+        <div class="clearfix zpdetail eheight">
+            <!--module:positionsearch begin-->
+            <div class="bs-module">
+                <div class="positionsearch-smallfresh ">
+                    <a name="jlt"></a>
+                </div>
+            </div>
+            <!--module:positionsearch end-->
+        </div>
+        <div class="zhiweixiangqing">
+            <!--module:positiondetail begin-->
+            <div class="bs-module">
+                <div class="positiondetail-simple ">
+                    <script type="text/javascript">
+
+                    </script>
+                    <div class="xiangqingtitle">
+                        <span id="JobName"></span>
+                    </div>
+                    <div class="xiangqingcontain">
+                        <div class="xiangqingline"></div>
+                        <ul class="xiangqinglist clearfix">
+                            <li class="ntitle td-HasKind">工作性质：</li>
+                            <li class="nvalue" id="JobType"> 全职 </li>
+                            <li class="ntitle td-HasSalaries">薪资范围：</li>
+                            <li class="nvalue"> 面议 </li>
+                        </ul>
+                        <ul class="xiangqinglist clearfix">
+                            <li class="ntitle td-HasEndTime">截止时间：</li>
+                            <li class="nvalue" id="JobDeadline"> &nbsp; </li>
+                            <br />
+                            <div class="xiangqingtext">
+                                <p>工作职责:</p>
+                                <p id="JobRep">
+                                </p>
+                                <br />
+                                <p>任职资格：</p>
+                                <p id="JobDesc">
+                                </p>
+                            </div>
+                            <div class="xiangqingfooter clearfix">
+                                <a href="javascript:history.back()" class="returnlist">返回</a>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div id="namelist">
+                    <li class="nvalue"> 全职 </li>
+                </div>
+            </div>
+            <!--module:positiondetail end-->
+        </div>
+    </div>
+</body>
+
+</html>

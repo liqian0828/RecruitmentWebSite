@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link type="text/css" rel="stylesheet" href="css/frontmodule.css" />
+    <link type="text/css" rel="stylesheet" href="css/5_themes_default_style.css?v=0.0.0.9" front="css" />
+    <link type="text/css" rel="stylesheet" href="css/5_themes_default_flexslider.css?v=0.0.0.9" front="css" />
+    <link type="text/css" rel="stylesheet" href="css/5_themes_default_jqueryuicore.css?v=0.0.0.9" front="css" />
+    <link type="text/css" rel="stylesheet" href="css/5_themes_default_jqueryuiselectmenu.css?v=0.0.0.9" front="css" />
+    <link type="text/css" rel="stylesheet" href="css/5_themes_default_jqueryuitheme.css?v=0.0.0.9" front="css" />
+    <script type="text/javascript" src="js/5_themes_default_jquery191.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_jqueryflexslidermin.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_jqueryuicore1.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_jqueryuiposition.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_jqueryuiwidget.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_jqueryuiselectmenu1.js?v=0.0.0.9"></script>
+    <script type="text/javascript" src="js/5_themes_default_demo.js?v=0.0.0.9"></script>
+    <!--引用静态文件:requirejs-->
+    <script type="text/javascript" src="js/require.js"></script>
+    <script type="text/javascript" src="js/MyJS.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var url = location.search;
+            var Request = new Object();
+
+            if (url.indexOf("?") != -1) {
+                var strs = url.substr(1)　//去掉?号
+                var str = strs.split("&");
+                for (var i = 0; i < str.length; i++) {
+                    Request[str[i].split("=")[0]] = unescape(str[i].split("=")[1]);
+                }
+            }
+
+            if (Request["UserName"]) {
+                $("#fabuzhiwei").show();
+                $("#fabuzhiwei2").show();
+                $("#login").hide();
+                $("#register").hide();
+                $("#showname").show();
+                $("#showname").text(Request["UserName"] + "，欢迎您！");
+            } else {
+                $("#fabuzhiwei").hide();
+                $("#fabuzhiwei2").hide();
+                $("#login").show();
+                $("#register").show();
+                $("#showname").hide();
+            }
+
+            getpubJobList();
+            gethuntingJobList();
+        }
+    </script>
+    <title>首页</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="headercontain">
+            <div class="bs-module">
+                <div class="login-link ">
+                    <div class="login-hearder">
+                        <ul class="header-login">
+                            <li class="welcome">
+                                <span>
+                                    &nbsp;&nbsp;
+                                    <span id="showname" class="userName" style="float:none"></span>
+                                </span>
+                            </li>
+                        </ul>
+                        <ul class="header-unLogin">
+                            <li id="fabuzhiwei">
+                                <a class="loginlink" href="javascript:addParamother('hunting.html')">
+                                    <span>发布职位</span>
+                                </a>
+                            </li>
+                            <li id="fabuzhiwei2">
+                                <a class="loginlink" href="javascript:addParamother('myInfo.html')">
+                                    <span>个人中心</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contain clearfix">
+        <!--module:jobstab begin-->
+        <div class="bs-module">
+            <div class="jobstab-default ">
+                <div class="zhiweiliebiao">
+                    <div class="listnav">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)" class="listchooseon">我的发布职位</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="listlinks">
+                        <ul id="pubjob">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="jobstab-default ">
+                <div class="zhiweiliebiao">
+                    <div class="listnav">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)" class="listchooseon">我的求职</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="listlinks">
+                        <ul id="huntingjob">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
