@@ -82,6 +82,11 @@
                                     <span>发布职位</span>
                                 </a>
                             </li>
+                            <li id="fabuzhiwei2">
+                                <a class="loginlink" href="javascript:addParamother('myInfo.html')">
+                                    <span>个人中心</span>
+                                </a>
+                            </li>
                             <li id="login">
                                 <a class="loginlink" href="login.html">
                                     <span>登录</span>
@@ -103,7 +108,9 @@
             <img src="images/commonbanner.jpg?v=634507909375300000" />
         </div>
     </div>
+
     <div class="contain joblist clearfix">
+
         <div class="clearfix sousuocontain fl">
             <!--module:positionsearch begin-->
             <div class="bs-module">
@@ -141,7 +148,9 @@
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
+
                     <script type="text/javascript">
                         function GetParam(key) {
                             return (document.location.search.match(new RegExp("(?:^\\?|&)" + key + "=(.*?)(?=&|$)")) || ['', null])[1];
@@ -192,7 +201,7 @@
 
                                 if (k == defaultText)
                                     k = "";
-                                    
+
                                 //location.href = "jobs.html?searchText=" + $("#searchInput").val();
                                 searchJobList();
                             });
@@ -222,7 +231,9 @@
                         });
                     </script>
                 </div>
+
             </div>
+
             <!--module:positionsearch end-->
             <!--module:positionlist begin-->
             <div class="bs-module">
@@ -249,6 +260,57 @@
                 </div>
             </div>
             <!--module:deliverystoredb end-->
+
+        </div>
+        <div class="zhaopindongtai bodertop" style="padding-bottom:0px">
+            <!--module:newslist begin-->
+            <div class="bs-module">
+                <div class="newslist-newsimple ">
+                    <div class="parttitleline"></div>
+                    <div class="parttitle">
+                        <span class="dongtaiico"></span>
+                        <div class="wordtitle">
+                            招聘动态
+                        </div>
+                    </div>
+                    <div class="dongtailinks">
+                        <ul>
+                            <li>
+                                <a href="news_detail.html" target="_blank">最嗨实习岗来...</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--module:newslist end-->
+        </div>
+        <div class="zhaopindongtai bodertop" style="padding-bottom:0px;margin-top:256px;">
+            <!--module:newslist begin-->
+            <div class="bs-module">
+                <div class="newslist-newsimple ">
+                    <div class="parttitleline"></div>
+                    <div class="parttitle">
+                        <span class="dongtaiico"></span>
+                        <div class="wordtitle">
+                            最热招聘
+                        </div>
+                    </div>
+                    <div class="dongtailinks">
+                        <ul>
+                            <li>
+                                <a href="detail.html?ID=561dc130-4e9e-11e8-96fa-69374f9ee10d" title="最嗨实习岗来啦~快来一起嗨">软件工程师</a>
+                            </li>
+                            <li>
+                                <a title="体验店-课程顾问" class="blue1" href="detail.html?ID=a2c675b0-4857-11e8-9cf7-31b9fd4ba84a"> 体验店-课程顾问 </a>
+                            </li>
+                            <li>
+                                <a title="PTD 助教总监" class="blue1" href="detail.html?ID=12312323423423"> PTD 助教总监 </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--module:newslist end-->
         </div>
     </div>
 </body>

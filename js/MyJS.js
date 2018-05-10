@@ -24,6 +24,34 @@ function addParam(url) {
     window.location.href = url + '&UserName=' + GetParam('UserName');
 }
 
+function getUserList(type) {
+    if(type == "1"){
+        $("#submit").hide();
+    } else {
+        $("#submit").show();
+    }
+
+    var userResume = callWS("http://localhost:4545/Resume?UserName=" + GetParam('UserName'));
+    if (userResume) {
+        var userResumeInfo = JSON.parse(userResume);
+        $("#name").val(userResumeInfo[0].Name);
+        var sex = userResumeInfo[0].Sex;
+        if (sex == "男")
+            $("#male").attr("checked", "checked");
+        else
+            $("#female").attr("checked", "checked");
+
+        $("#Birthday").val(userResumeInfo[0].Birthday);
+        $("#mail").val(userResumeInfo[0].Mail);
+        $("#tele").val(userResumeInfo[0].Tele);
+        $("#YearsOfWork").val(userResumeInfo[0].WEY);
+        $("#CurrSalary").val(userResumeInfo[0].Salary);
+        $("#EntrantDate").val(userResumeInfo[0].OBDate);
+    } else {
+        alert("获取信息失败！");
+    }
+}
+
 function huntingNav() {
     var url = "apply_info.html?JobName=" + $("#JobName").text();
     $("#apply").attr("href", url + '&UserName=' + GetParam('UserName') + "&ID=" + GetParam("ID"));
@@ -35,7 +63,7 @@ function GetHuntingName() {
         var innerElements = "";
         $("#namelist").text("");
         for (var i = 0; i < myDatas.length; i++) {
-            innerElements += "<li class='nvalue'>" + myDatas[i].Name + " " + myDatas[i].Tele +"</li>";
+            innerElements += "<li class='nvalue'><a href='apply_info.html?UserName=" + GetParam('UserName') + "&Type=1'>" + myDatas[i].Name + "</li>";
         }
         $("#namelist").append(innerElements);
     }
@@ -46,11 +74,11 @@ function getpubJobList() {
     if (jobList) {
         var myJobInfo = JSON.parse(jobList);
         var innerElements = "";
-        $("#pubjob").text("");
+        $("#huntingjob").text("");
         for (var i = 0; i < myJobInfo.length; i++) {
-            innerElements += "<li><a href='mydetail.html?ID=" + myJobInfo[i].ID + "&UserName=" + GetParam('UserName') + "'>" + myJobInfo[i].Name + "</a></li>";
+            innerElements += "<li><a href='mydetail.html?ID=" + myJobInfo[i].ID + "&UserName=" + GetParam('UserName') + "&Type=1'>" + myJobInfo[i].Name + "</a></li>";
         }
-        $("#pubjob").append(innerElements);
+        $("#huntingjob").append(innerElements);
     }
 }
 
@@ -59,11 +87,11 @@ function gethuntingJobList() {
     if (jobList) {
         var myJobInfo = JSON.parse(jobList);
         var innerElements = "";
-        $("#huntingjob").text("");
+        $("#pubjob").text("");
         for (var i = 0; i < myJobInfo.length; i++) {
             innerElements += "<li><a href='mydetail.html?ID=" + myJobInfo[i].ID + "&UserName=" + GetParam('UserName') + "'>" + myJobInfo[i].Name + "</a></li>";
         }
-        $("#huntingjob").append(innerElements);
+        $("#pubjob").append(innerElements);
     }
 }
 

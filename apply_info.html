@@ -25,12 +25,13 @@
     <script src="js/MyJS.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            if(GetParam('UserName') == "null"){
+            if (GetParam('UserName') == "null") {
                 window.location.href = "login.html";
             }
-           $("#jobtitle").text(decodeURIComponent(GetParam("JobName")));
+            $("#jobtitle").text(decodeURIComponent(GetParam("JobName")));
+            getUserList(GetParam("Type"));
         });
-   </script>
+    </script>
     <!--引用静态文件:front_css-->
     <link href="css/front.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
@@ -267,9 +268,9 @@
                                                     <li>
                                                         <label class="current label_required">性别：</label>
                                                         <div class="radio_list">
-                                                            <input type="radio" name="RecruitmentPortalPersonProfile_gender" value="0" />
+                                                            <input type="radio" name="RecruitmentPortalPersonProfile_gender" value="0" id="male" />
                                                             <label class="radio_label">男</label>
-                                                            <input type="radio" name="RecruitmentPortalPersonProfile_gender" value="1" />
+                                                            <input type="radio" name="RecruitmentPortalPersonProfile_gender" value="1" id="female" />
                                                             <label class="radio_label">女</label>
                                                         </div>
                                                     </li>
@@ -379,10 +380,9 @@
                         <div class="dl_subbtn dl_htline32">
                             <span class="dl_btn_lev dl_ft14_grey dl_padr10">
                                 <a name="btnCancel" href="javascript:history.back();">
-                                    <b>取消</b>
-                                </a>
+                                    <b id="cancel">返回</b>
                             </span>
-                            <a name="btnSave" href="javascript:HuntingJob();" class="dl_btn_grey1">
+                            <a name="btnSave" href="javascript:HuntingJob();" class="dl_btn_grey1" id="submit">
                                 <span>提交</span>
                             </a>
                         </div>

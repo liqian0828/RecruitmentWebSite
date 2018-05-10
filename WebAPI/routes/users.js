@@ -22,6 +22,12 @@ router.post('/reg', function (req, res, next) {
   getRes = res;
 });
 
+router.get('/Resume', function (req, res, next) {
+  var params = url.parse(req.url, true).query;
+  getData.getUserResume(ResponseBody, params.UserName);
+  getRes = res;
+});
+
 function ResponseBody(resBody) {
   getRes.send(resBody);
 }

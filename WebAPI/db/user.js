@@ -8,6 +8,14 @@ exports.getUserData = function (callback, ID, PW) {
     db.close();
 }
 
+exports.getUserResume = function (callback, UserName) {
+    var db = new sqlite3.Database('DBFile/JobHunting.db');
+    db.all('select R.* from T_Resume as R join T_User as U on R.UserID = U.ID where U.UserName = ?', [UserName], function (err, rows) {
+        callback(JSON.stringify(rows));
+    });
+    db.close();
+}
+
 exports.regData = function (callback, body) {
     var db = new sqlite3.Database('DBFile/JobHunting.db');
     const uuidv1 = require('uuid/v1');
