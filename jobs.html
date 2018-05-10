@@ -37,11 +37,13 @@
             if (Request["UserName"]) {
                 $("#fabuzhiwei").show();
                 $("#login").hide();
+                $("#fabuzhiwei2").show();
                 $("#register").hide();
                 $("#showname").show();
                 $("#showname").text(Request["UserName"] + "，欢迎您！");
             } else {
                 $("#fabuzhiwei").hide();
+                $("#fabuzhiwei2").hide();
                 $("#login").show();
                 $("#register").show();
                 $("#showname").hide();
